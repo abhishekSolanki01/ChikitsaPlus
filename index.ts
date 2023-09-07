@@ -1,28 +1,22 @@
-const express = require('express');
-const app = express();
-const mongoose = require("mongoose")
+import express from "express";
+import cors from 'cors';
+import mongoose from 'mongoose';
+import 'dotenv/config'
 
-const cors = require("cors");
+const PORT = 3000
 
-const adminRoutes = require('./routes/admin')
-const receptionistRoutes = require('./routes/receptionist')
-const userRoutes = require('./routes/user')
+const app  = express();
 
-const CONNECTION_STRING = `mongodb+srv://abhishek:12345@cluster0.pcghker.mongodb.net/?retryWrites=true&w=majority`
-
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
+//routes
+// app.use('/admin', adminRoutes)
 
+//server run 
+app.listen(PORT, () => {
+    console.log("Server is running on port " +  PORT);
+})
 
-app.use('/admin', adminRoutes);
-app.use('/receptionist', receptionistRoutes)
-app.use('/users', userRoutes)
-
-
-
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000');
-});
-
-mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "courses" });
+//@ts-ignore
+mongoose.connect(process.env.MONGO_URI, {dbNAme: 'chikitsa'})
