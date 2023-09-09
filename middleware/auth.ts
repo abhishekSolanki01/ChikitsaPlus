@@ -5,12 +5,9 @@ import { Admin } from '../models/admin';
 import { Patient } from '../models/patient';
 import { Receptionist } from '../models/receptionist';
 import jwt, { Secret } from 'jsonwebtoken';
+import { CustomRequest } from '../types';
 
 const SECRET : Secret | undefined = process.env.SECRET;
-
-interface CustomRequest extends Request{
-    user : Object
-}
 
 export const auth = (role: String) => async (req: Request, res: Response, next: NextFunction) => {
     try {

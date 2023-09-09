@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-export const userSchema = new Schema({
+export const userSchema = {
     firstName: {
         type: String, 
         lowercase: true, 
@@ -47,7 +47,7 @@ export const userSchema = new Schema({
         lowercase: true, 
         trim: true
     },
-})
+}
 
 
 // export userSchema //user = mongoose.model('User', userSchema)
